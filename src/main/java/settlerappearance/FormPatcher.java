@@ -1,5 +1,6 @@
 package settlerappearance;
 
+import necesse.engine.Settings;
 import necesse.gfx.forms.Form;
 import necesse.gfx.forms.components.FormCheckBox;
 import necesse.gfx.forms.components.FormComponent;
@@ -34,6 +35,9 @@ public class FormPatcher {
                 box = currentForm.addComponent(new AppearanceCheckbox(matrix[0][slot], matrix[1][slot]));
                 box.onClicked(FormPatcher::setAppearance);
                 box.checked = SettlerDisplayConfig.getItemSlotDisplayState(shopContainerMobUniqueID, slot);
+                if (slot == 0) {
+                    box.setActive(Settings.showSettlerHeadArmor);
+                }
                 box.slot = slot;
             }
             break;
