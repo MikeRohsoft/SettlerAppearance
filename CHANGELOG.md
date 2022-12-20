@@ -1,6 +1,8 @@
+# v1.0.3
+Supports the showSettlerHeadArmor Game setting
 
-# v0.2
+# v1.0.2
 Code Improvements
 
-# v0.1
+# v1.0.1
 Initial Release

@@ -1,5 +1,6 @@
 package settlerappearance.patches;
 
+import necesse.engine.Settings;
 import necesse.engine.modLoader.annotations.ModMethodPatch;
 import necesse.entity.mobs.friendly.human.HumanMob;
 import necesse.inventory.InventoryItem;
@@ -19,13 +20,17 @@ public class HumanMobGetDisplayArmorPatch {
             case 0: case 1: case 2: break;
             default: return;
         }
+        InventoryItem defaultItem =
+            (defaultItemStringID != null) ?
+                new InventoryItem(defaultItemStringID) :
+                null;
         inventoryItem =
+            (slot == 0 && !Settings.showSettlerHeadArmor) ?
+                defaultItem :
             (!thisHumanMob.equipmentInventory.isSlotClear(slot + 3) && SettlerDisplayConfig.getItemSlotDisplayState(thisHumanMob.getUniqueID(), slot + 3)) ?
                 thisHumanMob.equipmentInventory.getItem(slot + 3) :
             (!thisHumanMob.equipmentInventory.isSlotClear(slot) && SettlerDisplayConfig.getItemSlotDisplayState(thisHumanMob.getUniqueID(), slot)) ?
                 thisHumanMob.equipmentInventory.getItem(slot) :
-            (defaultItemStringID != null) ?
-                new InventoryItem(defaultItemStringID) :
-                null;
+                defaultItem;
     }
 }

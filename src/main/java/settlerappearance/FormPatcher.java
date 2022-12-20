@@ -9,7 +9,7 @@ import necesse.gfx.forms.presets.containerComponent.mob.EquipmentForm;
 public class FormPatcher {
     public static int shopContainerMobUniqueID;
     public static void setAppearance(FormInputEvent<FormCheckBox> e) {
-        SettlerDisplayConfig.setItemSlotDisplayState(shopContainerMobUniqueID, ((AppearanceCheckbox)e.from).slot, !e.from.checked);
+        SettlerDisplayConfig.setItemSlotDisplayState(shopContainerMobUniqueID, ((AppearanceCheckbox)e.from).slot, !e.from.checked ? 1 : 0);
     }
 
     public static void patchForm(EquipmentForm form) {

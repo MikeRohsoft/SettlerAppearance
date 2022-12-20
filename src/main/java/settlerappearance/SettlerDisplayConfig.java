@@ -19,16 +19,15 @@ public class SettlerDisplayConfig {
         if (!file.exists()) {
             return;
         }
+
         LoadData save = new LoadData(file);
         for (LoadData data : save.getLoadData()) {
             this.map.put(Integer.parseInt(data.getName()), save.getInt(data.getName()));
         }
     }
 
-    public static void setItemSlotDisplayState(int index, int slot, boolean b) {
-        int bitflags = getInstance().map.getOrDefault(index, 0);
-        bitflags = b ? (bitflags | (1 << slot)) : (bitflags & ~(1 << slot));
-        getInstance().map.put(index, bitflags);
+    public static void setItemSlotDisplayState(int index, int slot, int b) {
+        getInstance().map.put(index, (getInstance().map.getOrDefault(index, 0) & ~(1 << slot)) | ((1 << slot) & -b));
         saveConfig();
     }
 
